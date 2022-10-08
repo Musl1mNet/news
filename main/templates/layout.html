@@ -9,12 +9,53 @@
     <link rel="stylesheet", type="text/css", href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}"/>
     <link rel="stylesheet", type="text/css", href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}"/>
     <link rel="stylesheet", type="text/css", href="{% static 'main/main.css' %}"/>
-    <title>{% block title %}{% endblock %}</title>
+    <title>{{ title }}</title>
 </head>
 <body>
-    {% block content %}
-        Default
-    {% endblock %}
+    <nav class="navbar navbar-expand-lg bg-success navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url "main:index" %}">News</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#id-main-menu">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="id-main-menu">
+                <ul class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'user:info' %}">{{ user.username }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'user:logout' %}">Chiqish</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link {% if url_name == 'user:regestration' %}active{% endif %}" href="{% url 'user:regestration' %}">Ro'yxatdan o'tish</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if url_name == 'user:login' %}active{% endif %}" href="{% url 'user:login' %}">Tizimga kirish</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        {% if messages %}
+                {% for message in messages %}
+                    <div class="{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+        {% endif %}
+        {% block content %}
+
+        {% endblock %}
+    </div>
 
     <script src="{% static 'vendor/jquery.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>

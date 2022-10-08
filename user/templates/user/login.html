@@ -1,0 +1,4 @@
+{% extends 'forms.html' %}
+
+{% block url %}{% url 'user:login' %}{% endblock %}
+{% block btn_title %}{{ request.title }}{% endblock %}
