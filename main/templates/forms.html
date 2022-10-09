@@ -8,7 +8,7 @@
                     {{ request.title }}
                 </div>
                 <div class="card-body">
-                    <form method="post" action="{% block url %}{% endblock %}">
+                    <form method="post" action="" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ form | crispy}}
                         <button type="submit" class="btn btn-secondary mt-4">{% block btn_title %}Saqlash{% endblock %}</button>

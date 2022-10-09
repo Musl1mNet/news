@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'user',
     'main',
     'crispy_forms',
+    "crispy_bootstrap5",
     'debug_toolbar',
 ]
 
@@ -55,6 +56,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'news.globals.title'
@@ -118,7 +120,8 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MESSAGE_TAGS = {
     messages.INFO: 'alert alert-info',

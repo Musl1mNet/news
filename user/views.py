@@ -49,7 +49,8 @@ def user_login(request):
 
             if user is not None:
                 login(request, user)
-                messages.success(request, "Xush kelibsiz!! {}".format(user.username))
+                user_name = str(user.username).capitalize()
+                messages.success(request, "Xush kelibsiz!! {}".format(user_name))
                 return redirect("main:index")
 
             form.add_error("password", "Username va/yoki parolda xatolik!")
@@ -66,6 +67,7 @@ def user_logout(request):
 @require_GET
 @login_required
 def user_info(request):
+    request.title = "Foydalanuvchi malumotlari"
     return render(request, "user/edit.html", {
         "form": EditForm(instance=request.user)
     })
