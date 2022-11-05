@@ -16,7 +16,7 @@ def get_spx_results(wanted):
 class MainIndex(ListView):
     model = Post
     template_name = 'main/index.html'
-
+    paginate_by = 6
     ordering = "-added_at"
 
     def get_context_data(self, **kwargs):
@@ -34,7 +34,6 @@ class MainIndex(ListView):
             list = Post.objects.order_by("-added_at")
         context = super().get_context_data(**kwargs)
         context['object_list'] = list
-        paginate_by = 6
         return context
 
 
