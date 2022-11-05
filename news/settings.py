@@ -26,11 +26,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'user',
-    'main',
+
     'crispy_forms',
     "crispy_bootstrap5",
     'debug_toolbar',
+    'sphinxsearch',
+
+    'user',
+    'main',
 ]
 
 MIDDLEWARE = [
@@ -61,6 +64,9 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'news.globals.title'
             ],
+            'libraries': {
+                'custom_tags': 'main.templatetags.mytags',
+            }
         },
     },
 ]

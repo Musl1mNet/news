@@ -5,7 +5,6 @@ import os
 from PIL import Image
 from io import BytesIO
 from django.core.files import File
-
 def name_conv_fn(ins, file):
     ext = file.split(".")[-1]
     filename = '{:%Y-%m-%d-%H-%M-%S}.{}'.format(datetime.now(), ext)

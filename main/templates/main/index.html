@@ -1,8 +1,18 @@
 {% extends 'layout.html' %}
-
+{% load mytags %}
 
 
 {% block content %}
+    <form class="input-group mb-3" method="get" action="" role="search">
+        <input type="text" class="form-control" placeholder="subject" aria-label="Content title" aria-describedby="button-addon2" name="subject">
+        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+    </form>
+{#    <div class="container">#}
+{#    {% find request 2 as find %}#}
+{#    <h1>{{ find }}</h1>#}
+{#        {% send_tag "alex;alex" as send %}#}
+{#        {{ send }}#}
+{#    </div>#}
     <div class="row row-cols-1 row-cols-md-3 g-4">
         {% for item in object_list %}
             <div class="col">
@@ -18,14 +28,14 @@
                 </div>
             </div>
         {% empty %}
-            <h2 colspan="3">Brorta ham post topilmadi</h2>
+            <h2>Brorta ham post topilmadi</h2>
         {% endfor %}
     </div>
-    <div class="pagination mt-4">
+    <div class="pagination">
         <span class="step-links">
             {% if page_obj.has_previous %}
-                <a class="btn btn-primary" href="?page=1">&laquo; first</a>
-                <a class="btn btn-primary" href="?page={{ page_obj.previous_page_number }}">previous</a>
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
             {% endif %}
 
             <span class="current">
@@ -33,9 +43,10 @@
             </span>
 
             {% if page_obj.has_next %}
-                <a class="btn btn-primary" href="?page={{ page_obj.next_page_number }}">next</a>
-                <a class="btn btn-primary" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
             {% endif %}
         </span>
     </div>
+
 {% endblock %}
