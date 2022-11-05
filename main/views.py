@@ -55,13 +55,3 @@ class PostCreate(CreateView):
         form.instance.user = self.request.user
         super().form_valid(form)
         return redirect("main:index")
-
-    # spx = connect_spx()
-    # result = spx.Query(subject, index="post_index")
-    # print(result)
-    # if result and result['status'] == 0 and result['total']:
-    #     match = {row.get(id): row.get('weight') for row in result['matches']}
-    #     print(match)
-    # if match:
-    # list_.sort(key=lambda a:match.get(a.id, 0))
-    # print(list_)
